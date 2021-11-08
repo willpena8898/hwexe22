@@ -1,0 +1,167 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Charge Calculator</title>
+    <style>
+        body {
+            background: linear-gradient(to right, rgb(73, 235, 73) 0%, rgb(243, 243, 7) 100%);
+        }
+
+        img {
+            width: 350px;
+            height: auto;
+            border-radius: 4rem;
+        }
+
+        .tableclass {
+            border: solid rgb(156, 241, 156) 10px;
+        }
+
+        a:link,
+        a:visited {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table class="tableclass">
+
+        <form name="theform">
+            <tr>
+                <td colspan="2">
+                    <h1>Meal Charge Calculation</h1>
+                    <p>
+                    <h3>Calculate total meal cost. Tax is 8.25% of meal cost. Tip is 15% of meal cost.<br>
+                        Total meal cost is equal to the meal cost plus the tax and plus the tip.</h3>
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><strong>Enter meal cost: </strong><input name="enterMealCostfm" size="10"><br></td>
+
+            </tr>
+
+            <tr>
+                <td id="display"></td>
+                <td>
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <h2>Description Price</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Meal Cost</strong></td>
+                            <td style="background-color: white; color: black; font-weight: bold;"
+                                id="enterMealCostFmOutput"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tax: (8.25%)</strong></td>
+                            <td style="background-color: white; color: black; font-weight: bold;" id="taxFmOutput"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tip: (15%)</strong></td>
+                            <td style="background-color: white; color: black; font-weight: bold;" id="tipFmOutput"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total:</strong></td>
+                            <td style="background-color: white; color: black; font-weight: bold;" id="totalFmOutput">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" name="calc" value="Calculate" onclick="calculate();"></td>
+                            <td><input type="button" name="clear" value="Clear" onclick="clearinfo();"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+        </form>
+    </table>
+
+    <script>
+        // declare the calculate function
+        function calculate() {
+            // declare the constants and the variables
+            const tax = .0825;
+            const tip = .15;
+
+            var enterMealCost;
+
+            var totalMealCost;
+            var totalTax;
+            var totalTip;
+            var total;
+
+            // Get the values from the text fields
+            enterMealCost = parseFloat(document.theform.enterMealCostfm.value);
+
+            // Perform all calculations
+            totalMealCost = parseFloat(enterMealCost);
+            totalTax = parseFloat(totalMealCost * .0825);
+            totalTip = parseFloat(totalMealCost * .15);
+            total = parseFloat(totalMealCost + totalTax + totalTip);
+
+            // display all calculations
+            document.getElementById("enterMealCostFmOutput").innerHTML = "$ " + totalMealCost.toFixed(2);
+            document.getElementById("taxFmOutput").innerHTML = "$ " + totalTax.toFixed(2);
+            document.getElementById("tipFmOutput").innerHTML = "$ " + totalTip.toFixed(2);
+            document.getElementById("totalFmOutput").innerHTML = "$ " + total.toFixed(2);
+        }
+
+        // declare the clear fuction
+        function clearinfo() {
+            document.theform.enterMealCostfm.value = " ";
+
+            document.getElementById("enterMealCostFmOutput").innerHTML = " ";
+            document.getElementById("taxFmOutput").innerHTML = " ";
+            document.getElementById("tipFmOutput").innerHTML = " ";
+            document.getElementById("totalFmOutput").innerHTML = " ";
+
+            document.theform.enterMealCostfm.focus();
+        }
+
+        function getImages() {
+
+            document.theform.enterMealCostfm.focus();
+
+            // Create the array of images
+            images = new Array(5);
+
+            // type in the getElementById line here
+            display = document.getElementById("display");
+
+            // Initialize the array with the images
+            images[0] = "<img src='food1.jpg' alt='image of food 1'>";
+            images[1] = "<img src='food2.jpg' alt='image of food 2'>";
+            images[2] = "<img src='food3.jpg' alt='image of food 3'>";
+            images[3] = "<img src='food4.jpg' alt='image of food 4'>";
+            images[4] = "<img src='food5.jpg' alt='image of food 5'>";
+            images[5] = "<img src='food6.jpg' alt='image of food 6'>";
+
+            // Get a random index into the array
+            x = Math.floor(Math.random() * images.length);
+
+            //Display the image on the HTML table 
+            display.innerHTML = images[x];
+        }
+        getImages();
+    </script>
+
+<p></p>
+
+<a href="http://csnet.southtexascollege.edu/localuser/wpena1/">Go Back to HOMEPAGE</a>
+<p>William Pena</p>
+
+
+    
+</body>
+
+</html>
